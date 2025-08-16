@@ -155,13 +155,8 @@
   <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
   <audio id="congratsSound" src="congrats.mp3" preload="auto"></audio>
   <script>
-    const prizes = [
-  { name: "10K", weight: 5 },
-  { name: "Bút bi", weight: 40 },
-  { name: "Móc khóa", weight: 20 },
-  { name: "5K", weight: 10 },
-  { name: "Chúc bạn may mắn lần sau", weight: 10 },
-  { name: "Sổ tay", weight: 15 }
+const prizes = [
+  { name: "Chúc bạn may mắn lần sau", weight: 100 }
 ];
 
     const wheel = document.getElementById("wheel");
@@ -247,5 +242,6 @@ const rotateDeg = 360 * (5 + Math.floor(Math.random() * 4)) + (360 - index * seg
   </script>
 </body>
 </html>
+
 
 
