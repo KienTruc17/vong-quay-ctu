@@ -155,9 +155,14 @@
   <audio id="spinSound" src="spin.mp3" preload="auto"></audio>
   <audio id="congratsSound" src="congrats.mp3" preload="auto"></audio>
   <script>
-const prizes = [
-  { name: "Chúc bạn may mắn lần sau", weight: 100 }
-];
+    const prizes = [
+      { name: "10K", weight: 5 },
+      { name: "Bút bi", weight: 40 },
+      { name: "Móc khóa", weight: 20 },
+      { name: "5K", weight: 10 },
+      { name: "Chúc bạn may mắn lần sau", weight: 10 }, // ô thứ 5
+      { name: "Sổ tay", weight: 15 }
+    ];
 
     const wheel = document.getElementById("wheel");
     const spinBtn = document.getElementById("spinBtn");
@@ -173,23 +178,19 @@ const prizes = [
       }
     }
 
-   function weightedRandomPrize() {
-  const index = prizes.findIndex(p => p.name === "Chúc bạn may mắn lần sau");
-  return { index, prize: "Chúc bạn may mắn lần sau" };
-}
-
-
     let deg = 0;
 
     spinBtn.addEventListener("click", () => {
       spinBtn.disabled = true;
 
-      const { index, prize } = weightedRandomPrize();
-     const segment = 360 / prizes.length;
-const offset = segment / 2;
-const correction = 4; // tinh chỉnh
-const rotateDeg = 360 * (5 + Math.floor(Math.random() * 4)) + (360 - index * segment - offset + correction);
+      // ép luôn quay vào ô thứ 5 (index = 4)
+      const index = 4;
+      const prize = prizes[index].name;
 
+      const segment = 360 / prizes.length;
+      const offset = segment / 2;
+      const correction = 4; // tinh chỉnh
+      const rotateDeg = 360 * (5 + Math.floor(Math.random() * 4)) + (360 - index * segment - offset + correction);
 
       deg = rotateDeg;
       wheel.style.transform = `rotate(${deg}deg)`;
@@ -221,7 +222,6 @@ const rotateDeg = 360 * (5 + Math.floor(Math.random() * 4)) + (360 - index * seg
 
       fetch("https://script.google.com/macros/s/AKfycby4bnc4HFOry2oTXpRJDDldIzEuEXqKhTmn24mDxQHrbmrZlru4D2rbQxbeXbZCxWI4/exec", {
         method: "POST",
-
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, phone, prize })
@@ -237,7 +237,3 @@ const rotateDeg = 360 * (5 + Math.floor(Math.random() * 4)) + (360 - index * seg
   </script>
 </body>
 </html>
-
-
-
-
